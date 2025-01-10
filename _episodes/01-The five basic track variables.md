@@ -39,26 +39,26 @@ The exact definitions are given in the `reco::TrackBase` [header file](https://g
 
 ## Accessing track variables
 
-Create `print.py` (for example `emacs -nw print.py`, or use your favorite text editor) in `TrackingShortExercize/`, then copy-paste the following code and run it (`python print.py`). Please note, if your `run321457_ZeroBias_AOD.root` is not in the directory you're working from, be sure to use the appropriate path in `line 2`.
+Create `print.py` (for example `emacs -nw print.py`, or use your favorite text editor) in `TrackingShortExercize/`, then copy-paste the following code and run it (`python3 print.py`). Please note, if your `run321457_ZeroBias_AOD.root` is not in the directory you're working from, be sure to use the appropriate path in `line 2`.
 ~~~
 import DataFormats.FWLite as fwlite
-events = fwlite.Events("root://cmseos.fnal.gov//store/user/cmsdas/2024/short_exercises/trackingvertexing/run321167_ZeroBias_AOD.root")
+events = fwlite.Events("root://cmseos.fnal.gov//store/user/cmsdas/2025/short_exercises/trackingvertexing/run321167_ZeroBias_AOD.root")
 tracks = fwlite.Handle("std::vector<reco::Track>")
 
 for i, event in enumerate(events):
     if i >= 5: break # print info only about the first 5 events
-    print "Event", i
+    print( "Event", i)
     event.getByLabel("generalTracks", tracks)
     numTotal = tracks.product().size()
-    print "total tracks: ", numTotal
+    print( "total tracks: ", numTotal)
     for j, track in enumerate(tracks.product()):
         if j >= 5: break # print info only about the first 5 tracks
-        print "    Track", j,
-        print "\t charge/pT: %.3f" %(track.charge()/track.pt()),
-        print "\t phi: %.3f" %track.phi(),
-        print "\t eta: %.3f" %track.eta(),
-        print "\t dxy: %.4f" %track.dxy(),
-        print "\t dz: %.4f"  %track.dz()
+        print( "    Track", j, end = " ")
+        print( "\t charge/pT: %.3f" %(track.charge()/track.pt()), end = " ")
+        print( "\t phi: %.3f" %track.phi(), end = " ")
+        print( "\t eta: %.3f" %track.eta(), end = " ")
+        print( "\t dxy: %.4f" %track.dxy(), end = " ")
+        print( "\t dz: %.4f"  %track.dz())
 ~~~
 {: .language-python}
 to print all tracks comment out the line: `if j >= 5: break` as `# if j >= 5: break`
@@ -79,19 +79,17 @@ The first three lines load the `FWLite` framework, the `.root` data file, and pr
 > 
 > > ### output of the tree command
 > > ~~~output
-> > PrintOutTracks
-> > |-- plugins
+> > PrintOutTracks/
+> > |-- plugins/
 > > |   |-- BuildFile.xml
 > > |   `-- PrintOutTracks.cc
 > > |-- python
-> > |   |-- __init__.py
-> > |   `-- __init__.pyc
 > > `-- test
-> >     |-- BuildFile.xml
 > >     |-- test_catch2_PrintOutTracks.cc
-> >     `-- test_catch2_main.cc
+> >     |-- test_catch2_main.cc
+> >     `-- BuildFile.xml
 > > 
-> > 3 directories, 7 files
+> > Total: 3 directories, 5 files
 > > ~~~
 > {: .solution2}
 >
@@ -166,7 +164,7 @@ The first three lines load the `FWLite` framework, the `.root` data file, and pr
 > process = cms.Process("RUN")
 > 
 > process.source = cms.Source("PoolSource",
->     fileNames = cms.untracked.vstring("root://cmseos.fnal.gov//store/user/cmsdas/2024/short_exercises/trackingvertexing/run321167_ZeroBias_AOD.root"))
+>     fileNames = cms.untracked.vstring("root://cmseos.fnal.gov//store/user/cmsdas/2025/short_exercises/trackingvertexing/run321167_ZeroBias_AOD.root"))
 > process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(5))
 > 
 > process.MessageLogger = cms.Service("MessageLogger",
@@ -187,8 +185,8 @@ The first three lines load the `FWLite` framework, the `.root` data file, and pr
 > This will produce the same output as the Python script, but it can be used on huge datasets. Though the language is different, notice that C++ and  `FWLite` use the same names for member functions: `charge()`, `pt()`, `phi()`, `eta()`, `dxy()`, and `dz()`.
 > That is intentional: you can learn what kinds of data are available with interactive  `FWLite ` and then use the same access methods when writing GRID jobs. There is another way to access `FWLite` with ROOT's C++-like syntax.
 >
-> The plugin is here: `/eos/uscms/store/user/cmsdas/2024/short_exercises/trackingvertexing/MyDirectory/PrintOutTracks/plugins/PrintOutTracks.cc`
-> The `run_cfg.py` is here: `/eos/uscms/store/user/cmsdas/2024/short_exercises/trackingvertexing/MyDirectory/PrintOutTracks/test/run_cfg.py`
+> The plugin is here: `/eos/uscms/store/user/cmsdas/2025/short_exercises/trackingvertexing/MyDirectory/PrintOutTracks/plugins/PrintOutTracks.cc`
+> The `run_cfg.py` is here: `/eos/uscms/store/user/cmsdas/2025/short_exercises/trackingvertexing/MyDirectory/PrintOutTracks/test/run_cfg.py`
 {: .solution}
 
 ## Track quality variables
@@ -213,7 +211,7 @@ Create a new `print.py` (with a unique name like `printMVA.py`) file with the fo
 Add a `Handle` to the MVA values:
 ~~~
 import DataFormats.FWLite as fwlite
-events = fwlite.Events("root://cmseos.fnal.gov//store/user/cmsdas/2024/short_exercises/trackingvertexing/run321167_ZeroBias_AOD.root")
+events = fwlite.Events("root://cmseos.fnal.gov//store/user/cmsdas/2025/short_exercises/trackingvertexing/run321167_ZeroBias_AOD.root")
 tracks = fwlite.Handle("std::vector<reco::Track>")
 MVAs = fwlite.Handle("std::vector<float>")
 ~~~
@@ -222,7 +220,7 @@ The event loop should be updated to this:
 ~~~
 for i, event in enumerate(events):
     if i >= 5: break            # only the first 5 events
-    print "Event", i
+    print( "Event", i)
     event.getByLabel("generalTracks", tracks)
     event.getByLabel("generalTracks", "MVAValues", MVAs)
 
@@ -238,21 +236,21 @@ for i, event in enumerate(events):
         if track.quality(track.qualityByName("highPurity")): numHighPurity += 1
 
         if j<50 or 55<j: continue
-        print "    Track", j,
-        print "\t charge/pT: %.3f" %(track.charge()/track.pt()),
-        print "\t phi: %.3f" %track.phi(),
-        print "\t eta: %.3f" %track.eta(),
-        print "\t dxy: %.4f" %track.dxy(),
-        print "\t dz: %.4f"  %track.dz(),
-        print "\t nHits: %s" %track.numberOfValidHits(), "(%s P+ %s S)"%(track.hitPattern().numberOfValidPixelHits(),track.hitPattern().numberOfValidStripHits()),
-        print "\t algo: %s"  %track.algoName(),
-        print "\t mva: %.3f" %mva
+        print( "    Track", j, end = " ")
+        print( "\t charge/pT: %.3f" %(track.charge()/track.pt()), end = " ")
+        print( "\t phi: %.3f" %track.phi(), end = " ")
+        print( "\t eta: %.3f" %track.eta(), end = " ")
+        print( "\t dxy: %.4f" %track.dxy(), end = " ")
+        print( "\t dz: %.4f"  %track.dz(), end = " ")
+        print( "\t nHits: %s" %track.numberOfValidHits(), "(%s P+ %s S)"%(track.hitPattern().numberOfValidPixelHits(),track.hitPattern().numberOfValidStripHits()), end = " ")
+        print( "\t algo: %s"  %track.algoName(), end = " ")
+        print( "\t mva: %.3f" %mva)
 
-    print "Event", i,
-    print "numTotal:", numTotal,
-    print "numLoose:", numLoose, "(%.1f %%)"%(float(numLoose)/numTotal*100),
-    print "numTight:", numTight, "(%.1f %%)"%(float(numTight)/numTotal*100),
-    print "numHighPurity:", numHighPurity, "(%.1f %%)"%(float(numHighPurity)/numTotal*100)
+    print( "Event", i, end = " ")
+    print( "numTotal:", numTotal, end = " ")
+    print( "numLoose:", numLoose, "(%.1f %%)"%(float(numLoose)/numTotal*100), end = " ")
+    print( "numTight:", numTight, "(%.1f %%)"%(float(numTight)/numTotal*100), end = " ")
+    print( "numHighPurity:", numHighPurity, "(%.1f %%)"%(float(numHighPurity)/numTotal*100))
 
 print("total events: ", dir(events))
 print("total events: ", type(events))
@@ -330,8 +328,8 @@ The C++-equivalent is hidden below.
 > cmsRun run_cfg.py
 > ~~~
 > {: .language-python}
-> The `plugin` can be found in `/eos/uscms/store/user/cmsdas/2024/short_exercises/trackingvertexing/PrintOutTracks_MVA.cc`
-> The `CMSSW config` file can be found in `/eos/uscms/store/user/cmsdas/2024/short_exercises/trackingvertexing/run_cfg_MVA.py`
+> The `plugin` can be found in `/eos/uscms/store/user/cmsdas/2025/short_exercises/trackingvertexing/PrintOutTracks_MVA.cc`
+> The `CMSSW config` file can be found in `/eos/uscms/store/user/cmsdas/2025/short_exercises/trackingvertexing/run_cfg_MVA.py`
 {: .solution}
 > ## Question 1
 > Now prepare plots for the track variables discussed above, as in the example below (name this file `plot_track_quantities.py` and put it in `TrackingShortExercize/`). Compare the **distributions of track-quality-related variables** (number of pixel hits, track goodness of fit, ..., which are given in input to MVA classifiers) between tracks passing the `highPurity` and `Loose` quality flags. **Do these distributions make sense to you?**
@@ -343,7 +341,7 @@ The C++-equivalent is hidden below.
 > from ROOT import gROOT
 > import os
 > 
-> events = fwlite.Events("root://cmseos.fnal.gov//store/user/cmsdas/2024/short_exercises/trackingvertexing/run321167_ZeroBias_AOD.root")
+> events = fwlite.Events("root://cmseos.fnal.gov//store/user/cmsdas/2025/short_exercises/trackingvertexing/run321167_ZeroBias_AOD.root")
 > tracks = fwlite.Handle("std::vector<reco::Track>")
 > 
 > hist_pt       = ROOT.TH1F("pt",       "track pt; p_{T} [GeV]", 100, 0.0, 100.0)
@@ -470,10 +468,10 @@ The C++-equivalent is hidden below.
 > >
 > > The following examples may help guide you to the right command (replace items surrounded by `< >`):
 > > ~~~bash
-> > scp -rp "<lpc-username>@cmslpc-sl7.fnal.gov:<absolute-path-to-cmslpc-directory>" ./ 
+> > scp -rp "<lpc-username>@cmslpc-el8.fnal.gov:<absolute-path-to-cmslpc-directory>" ./ 
 > > scp -rp "<cmslpc-ssh-hostname>:<absolute-path-to-cmslpc-directory>" ./ 
-> > scp -rp "<lpc-username>@cmslpc-sl7.fnal.gov:/uscms/homes/<first-letter-of-lpc-username>/<lpc-username>/nobackup/CMSSW_10_6_30_patch1_cmsdas/src/TrackingShortExercize/plots/highP" ./ 
-> > scp -rp "$USER@cmslpc-sl7.fnal.gov:/uscms/homes/${USER:0:1}/${USER}/nobackup/CMSSW_10_6_30_patch1_cmsdas/src/TrackingShortExercize/plots/highP" ./ 
+> > scp -rp "<lpc-username>@cmslpc-el8.fnal.gov:/uscms/homes/<first-letter-of-lpc-username>/<lpc-username>/nobackup/CMSSW_10_6_30_patch1_cmsdas/src/TrackingShortExercize/plots/highP" ./ 
+> > scp -rp "$USER@cmslpc-el8.fnal.gov:/uscms/homes/${USER:0:1}/${USER}/nobackup/CMSSW_10_6_30_patch1_cmsdas/src/TrackingShortExercize/plots/highP" ./ 
 > > ~~~
 > > 
 > > When you have time `rsync` is worth learning about.
@@ -519,7 +517,7 @@ Consider that the `packedPFCandidates` collects both **charged** and **neutral c
 > ## Question 2
 > Write a simple script `print-comparison.py` that reads a MiniAOD file and the [AOD](https://twiki.cern.ch/twiki/bin/view/CMS/AOD) file and compare plots of the same variables we looked at before for `HighPurity` tracks. For the track p<sub>T</sub> distributuon, focus on the low p<sub>T</sub> region below 5 [GeV](https://twiki.cern.ch/twiki/bin/view/CMS/GeV). **Can you see any (non-statistical) difference with the previosu plots?** The MiniAOD file is located here:
 > > ~~~
-> root://cmseos.fnal.gov//store/user/cmsdas/2024/short_exercises/trackingvertexing/run321167_ZeroBias_MINIAOD.root
+> root://cmseos.fnal.gov//store/user/cmsdas/2025/short_exercises/trackingvertexing/run321167_ZeroBias_MINIAOD.root
 > ~~~
 > {: .language-bash}
 {: .challenge}
@@ -530,8 +528,8 @@ Consider that the `packedPFCandidates` collects both **charged** and **neutral c
 > import os
 > ROOT.gROOT.SetBatch(True) # this allows pyroot to run in batch mode - which prevents the histograms from being displayed every time they are drawn.
 > 
-> events = fwlite.Events("root://cmseos.fnal.gov//store/user/cmsdas/2024/short_exercises/trackingvertexing/run321167_ZeroBias_MINIAOD.root")
-> eventsAOD = fwlite.Events("root://cmseos.fnal.gov//store/user/cmsdas/2024/short_exercises/trackingvertexing/run321167_ZeroBias_AOD.root")
+> events = fwlite.Events("root://cmseos.fnal.gov//store/user/cmsdas/2025/short_exercises/trackingvertexing/run321167_ZeroBias_MINIAOD.root")
+> eventsAOD = fwlite.Events("root://cmseos.fnal.gov//store/user/cmsdas/2025/short_exercises/trackingvertexing/run321167_ZeroBias_AOD.root")
 > 
 > tracks     = fwlite.Handle("std::vector<pat::PackedCandidate>")
 > losttracks = fwlite.Handle("std::vector<pat::PackedCandidate>")
@@ -690,10 +688,10 @@ Consider that the `packedPFCandidates` collects both **charged** and **neutral c
 > >
 > > The following examples may help guide you to the right command (replace items surrounded by `< >`):
 > > ~~~bash
-> > scp -rp "<lpc-username>@cmslpc-sl7.fnal.gov:<absolute-path-to-cmslpc-directory>" ./ 
+> > scp -rp "<lpc-username>@cmslpc-el8.fnal.gov:<absolute-path-to-cmslpc-directory>" ./ 
 > > scp -rp "<cmslpc-ssh-hostname>:<absolute-path-to-cmslpc-directory>" ./ 
-> > scp -rp "<lpc-username>@cmslpc-sl7.fnal.gov:/uscms/homes/<first-letter-of-lpc-username>/<lpc-username>/nobackup/CMSSW_10_6_30_patch1_cmsdas/src/TrackingShortExercize/plots/highP" ./ 
-> > scp -rp "$USER@cmslpc-sl7.fnal.gov:/uscms/homes/${USER:0:1}/${USER}/nobackup/CMSSW_10_6_30_patch1_cmsdas/src/TrackingShortExercize/plots/highP" ./ 
+> > scp -rp "<lpc-username>@cmslpc-el8.fnal.gov:/uscms/homes/<first-letter-of-lpc-username>/<lpc-username>/nobackup/CMSSW_14_0_19/src/TrackingShortExercize/plots/highP" ./ 
+> > scp -rp "$USER@cmslpc-el8.fnal.gov:/uscms/homes/${USER:0:1}/${USER}/nobackup/CMSSW_14_0_19/src/TrackingShortExercize/plots/highP" ./ 
 > > ~~~
 > > 
 > > When you have time `rsync` is worth learning about.

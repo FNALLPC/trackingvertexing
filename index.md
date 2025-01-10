@@ -10,14 +10,14 @@ latitude: "41.842258"        # decimal latitude of workshop venue (use https://w
 longitude: "-88.245781"       # decimal longitude of the workshop venue (use https://www.latlong.net)
 humandate: "Synchronously January, 2023"    # human-readable dates for the workshop (e.g., "Feb 17-18, 2020")
 humantime: "24/7"    # human-readable times for the workshop (e.g., "9:00 am - 4:30 pm")
-startdate: 2024-01-08 # machine-readable start date for the workshop in YYYY-MM-DD format like 2015-01-01
-enddate: 2024-01-12   # machine-readable end date for the workshop in YYYY-MM-DD format like 2015-01-02
-email: ["daniel.spitzbart@cern.ch"]
+startdate: 2025-01-13 # machine-readable start date for the workshop in YYYY-MM-DD format like 2015-01-01
+enddate: 2025-01-17   # machine-readable end date for the workshop in YYYY-MM-DD format like 2015-01-02
+email: ["emery.nibigira@cern.ch"]
 ---
 
 ![CMS Detector Slice](https://cmsexperiment.web.cern.ch/sites/cmsexperiment.web.cern.ch/files/detectoroverview.gif){:width="50%"}
 
-## Welcome to the CMS Data Analysis School 2024 Tracking and Vertexing Short Exercise!
+## Welcome to the CMS Data Analysis School 2025 Tracking and Vertexing Short Exercise!
 
 We will present an introduction to using tracks for analyses in the era of **large pile-up** (many primary vertices). Our exercises will all use real data and will familiarize you with the following techniques:
 
@@ -29,36 +29,33 @@ We will present an introduction to using tracks for analyses in the era of **lar
 {: .checklist}
 
 > ## Prerequisites
-> **Before going any further, please complete the [CMS DAS Pre-Exercises](https://cern-cms-das-2023.github.io/cms-das-pre-exercises/) and then follow the instructions on the [setup page](setup.md).**
+> **Before going any further, please complete the [CMS DAS Pre-Exercises](https://fnallpc.github.io/cms-das-pre-exercises/) and then follow the instructions on the [setup page](setup.md).**
 {: .prereq}
 
 
 > ## Facilitators
-> * [Daniel Spitzbart*](https://twiki.cern.ch/twiki/bin/view/Main/DanielSpitzbart), Boston University ([daniel.spitzbart@cern.ch](mailto:daniel.spitzbart@cern.ch))
-> * [Aidan Grummer](https://twiki.cern.ch/twiki/bin/view/Main/Aidan Grummer), Fermilab ([aidan.gummer@cern.ch](mailto:aidan.grummer@cern.ch))
+> #### Lead Contact
+> * [Emery Nibigira](#facilitators), University of Tennessee ([emery.nibigira@cern.ch](mailto:emery.nibigira@cern.ch))
+> * [Leonardo Giannini](#facilitators), UCSD ([leonardo.giannini@cern.ch](mailto:leonardo.giannini@cern.ch))
 >  
-> *Lead Contact
+> #### All Facilitators
 > <table>
 >   <tr>
->     <td align="center"><a href="https://github.com/danbarto"><img src="https://lpc.fnal.gov//CMSDAS2024/Daniel_Spitzbart.png" width="100px;" alt=""/><br /><sub><b>Daniel Spitzbart</b></sub></a><br /><a href="https://danbarto.github.io" title="More about him">🖋</a></td>
->     <td align="center"><a href="https://github.com/"><img src="https://lpc.fnal.gov//CMSDAS2024/Michael_Carrigan.png" width="100px;" alt=""/><br /><sub><b>Michael Carrigan</b></sub></a><br /><a href="https://github.com/" title="More about him">🖋</a></td>
->     <td align="center"><a href="https://github.com/akgrummer"><img src="https://lpc.fnal.gov//CMSDAS2024/Aidan_Grummer.jpg" width="100px;" alt=""/><br /><sub><b>Aidan Grummer</b></sub></a><br /><a href="https://github.com/akgrummer" title="More about him">🖋</a></td>
->     <td align="center"><a href="https://github.com/"><img src="https://lpc.fnal.gov//CMSDAS2024/Keith_Ulmer.jpg" width="100px;" alt=""/><br /><sub><b>Keith Ulmer</b></sub></a><br /><a href="https://github.com/" title="More about him">🖋</a></td>
->     <td align="center"><a href="https://github.com/"><img src="https://lpc.fnal.gov//CMSDAS2024/Kai_Yi.jpg" width="100px;" alt=""/><br /><sub><b>Kai Yi</b></sub></a><br /><a href="https://github.com/" title="More about him">🖋</a></td>
+>     <td align="center"><a href="https://github.com/enibigir"><img src="https://lpc.fnal.gov//CMSDAS2025/Emery_Nibigira.jpg" width="100px;" alt=""/><br /><sub><b>Emery Nibigira</b></sub></a><br /><a href="https://lpc.fnal.gov/fellows/2025/Emery_Nibigira.shtml" title="More about him">🖋</a></td>
+>     <td align="center"><a href="https://github.com/leonardogiannini"><img src="https://lpc.fnal.gov//CMSDAS2025/Leonardo_Giannini.jpg" width="100px;" alt=""/><br /><sub><b>Leonardo Giannini</b></sub></a><br /><a href="https://github.com/leonardogiannini" title="More about him">🖋</a></td>
+>     <td align="center"><a href=""><img src="https://lpc.fnal.gov//CMSDAS2025/Tetiana_Mazurets.jpg" width="100px;" alt=""/><br /><sub><b>Tetiana Mazurets</b></sub></a><br /><a href="" title="More about Tetiana">🖋</a></td>
 >   </tr>
 >   <tr>
->     <td align="center"><a href="https://github.com/"><img src="https://lpc.fnal.gov//CMSDAS2024/Irene_Zoi.jpg" width="100px;" alt=""/><br /><sub><b>Irene Zoi</b></sub></a><br /><a href="https://github.com/" title="More about him">🖋</a></td>
->     <td align="center"><a href="https://github.com/"><img src="https://lpc.fnal.gov//CMSDAS2024/Sam_Bein.jpg" width="100px;" alt=""/><br /><sub><b>Sam Bein</b></sub></a><br /><a href="https://github.com/" title="More about him">🖋</a></td>
->     <td align="center"><a href="https://github.com/"><img src="https://lpc.fnal.gov//CMSDAS2024/Brunella_D_Anzi.jpg" width="100px;" alt=""/><br /><sub><b>Brunella D'Anzi</b></sub></a><br /><a href="https://github.com/" title="More about him">🖋</a></td>
->     <td align="center"><a href="https://github.com/"><img src="https://lpc.fnal.gov//CMSDAS2024/Nicola_De_Filippis.png" width="100px;" alt=""/><br /><sub><b>Nicola De Filippis</b></sub></a><br /><a href="https://github.com/" title="More about him">🖋</a></td>
->     <td align="center"><a href="https://github.com/"><img src="https://lpc.fnal.gov//CMSDAS2024/Ulascan_Sarica.jpg" width="100px;" alt=""/><br /><sub><b>Ulascan Sarica</b></sub></a><br /><a href="https://github.com/" title="More about him">🖋</a></td>
+>     <td align="center"><a href=""><img src="https://lpc.fnal.gov//CMSDAS2025/Hichem_Bouchamaoui.jpg" width="100px;" alt=""/><br /><sub><b>Hichem Bouchamaoui</b></sub></a><br /><a href="" title="More about Hichem">🖋</a></td>
+>     <td align="center"><a href=""><img src="https://lpc.fnal.gov//CMSDAS2025/Raymond_Wynne.jpg" width="100px;" alt=""/><br /><sub><b>Ray Wynne</b></sub></a><br /><a href="" title="More about Ray">🖋</a></td>
+>     <td align="center"><a href="https://github.com/akgrummer"><img src="https://lpc.fnal.gov//CMSDAS2025/Aidan_Grummer.jpg" width="100px;" alt=""/><br /><sub><b>Aidan Grummer</b></sub></a><br /><a href="https://github.com/akgrummer" title="More about Aidan">🖋</a></td>
 >   </tr>
 > </table>
 {: .testimonial}
 
 
 > ## Mattermost Chat
-> **The [Tracking and Vertexing Short Exercise](https://mattermost.web.cern.ch/cmsdaslpc2024/channels/shortextrackingvertexing) channel will be available once you join the [CMSDAS@LPC2024](https://mattermost.web.cern.ch/cmsdaslpc2024/channels/town-square) team. Direction for how to join this Mattermost chat team can be found on the <a href="setup.html">setup</a> page.**
+> **The [Tracking and Vertexing Short Exercise](https://mattermost.web.cern.ch/cmsdaslpc2025/channels/shortextrackingvertexing) channel will be available once you join the [CMSDAS@LPC2025](https://mattermost.web.cern.ch/cmsdaslpc2025/channels/town-square) team. Direction for how to join this Mattermost chat team can be found on the <a href="setup.html">setup</a> page.**
 {: .discussion}
 
 > ## CERN Twiki and Introduction Slides
