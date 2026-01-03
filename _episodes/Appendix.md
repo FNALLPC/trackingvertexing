@@ -23,14 +23,15 @@ LXR is a very useful tool to look-up methods/classes/configuration files/paramet
 *	CMSSW Reference Manual: [https://cmsdoxygen.web.cern.ch/cmsdoxygen/CMSSW_14_0_19/doc/html/classes.html](https://cmsdoxygen.web.cern.ch/cmsdoxygen/CMSSW_14_0_19/doc/html/classes.html)
 
 ## Tracking efficiency performance via the Tag and Probe technique
-The **tag and probe** method is a **data-driven technique** for measuring particle detection efficiencies. It is based on the decays of **known resonances** (e.g. J/ψ, ϒ and Z) to pairs of the particles being studied. In this exercise, these particles are muons, and the Z resonance is nominally used.
-The determination of the detector efficiency is a critical ingredient in any physics measurement. It accounts for the particles that were produced in the collision but escaped detection (did not reach the detector elements, were missed by the reconstructions algorithms, etc). It can be in general estimated using simulations, but simulations need to be calibrated with data. The T&P method here described provides a useful and elegant mechanism for extracting efficiencies directly from data!.
+The **tag and probe** method is a **data-driven technique** for measuring particle detection efficiencies. This approach is broadly used in obtaining trigger, tracking, identification and many more steps efficiency. It is based on the decays of **known resonances** (e.g. J/ψ, ϒ and Z) to pairs of the particles being studied. In this exercise, these particles are muons, and the Z resonance is nominally used.
+The determination of the detector efficiency is a critical ingredient in any physics measurement. It accounts for the particles that were produced in the collision but escaped detection (did not reach the detector elements, were missed by the reconstructions algorithms, etc). It can be in general estimated using simulations, but simulations need to be calibrated with data. The T&P method here described provides a useful and elegant mechanism for extracting efficiencies directly from data!
 ### What is “tag” and “probe”?
 
 The resonance, used to calculate the efficiencies, decays to a pair of particles: the tag and the probe.
 *	Tag muon = well identified, triggered muon (tight selection criteria).
 *	Probe muon = unbiased set of muon candidates (very loose selection criteria), either passing or failing the criteria for which the efficiency is to be measured.
 ### How do we calculate the efficiency?
+
 The efficiency is given by the fraction of probe muons that pass a given criteria:
 
 * The denominator corresponds to the number of resonance candidates (tag+probe pairs) reconstructed in the dataset. 
@@ -41,9 +42,9 @@ In this exercise the probe muons are `StandAlone` muons: all tracks of the segme
 
 ### The fitting method
 
-It consists on fitting the invariant mass of the tag & probe pairs, in the two categories: passing probes, and all probes. I.e., for the unbiased leg of the decay, one can apply a selection criteria (a set of cuts) and determine whether the object passes those criteria or not.
+After seelcting the tag & probe pair events, the data can be put into 2 categories: probe muons passing seelction, and all probes. In both of the 2 categories, to better etimate the true signal contribution, we do a fit on the a kinematic variable instead of simply counting the number of events.
 
-The procedure is applied after splitting the data in bins of a kinematic variable of the probe object (e.g. the traverse momentum, p<sub>T</sub>); as such, the efficiency will be measured as a function of that quantity for each of the bins.
+The procedure is applied after splitting the data in bins of a kinematic variable of the probe object (e.g. the traverse momentum, p<sub>T</sub>); as such, the efficiency will be measured as a function of that quantity for each of the bins. Usually we obtain different efficiency in different p<sub>T</sub> or η bins in tracking efficiency measurement, because different p<sub>T</sub> and η particles curve differently and tend to have different detector behaviours.
 So, in the picture below, on the left, let’s imagine that the p<sub>T</sub> bin we are selecting is the one marked in red. But, of course, in that bin (like in the rest) you will have true Z decays as well as muon pairs from other processes (maybe QCD, for instance). The true decays would make up our signal, whereas the other events will be considered the background.
 
 The fit, which is made in a different space (the invariant mass space) allows to statistically discriminate between signal and background. To compute the efficiency we simply divide the signal yield from the fits to the passing category by the signal yield from the fit of the inclusive (All) category. This approach is depicted in the middle and right-hand plots of the image below for the Y resonance.
@@ -76,11 +77,12 @@ To get the efficiency plot, we used the `TEfficiency` class from ROOT. You’ll 
 
 The creation of these `TH1 objects` is taken care of by the `src/make_hist.cpp` code. Note that we load all these functions in the src area directly in header of the `Efficiency.C` code. Now that you understand what the` Efficiency.C` macro does, run your code with in a batch mode `(-b)` and with a quit-when-done switch `(-q)` `root -q -b Efficiency.C`.
 
-When the execution finishes, you should have 2 new files. One on your working directory `Histograms_Data.root` and another one `Efficiency_Run2018.root` located at `Efficiency_Result/eta`. The second contains the efficiency we calculated, while the first file is used to re-do any unusuable fits. If you want, check out the PDF files under the `Fit_Result/` directory, which contain the fitting results as the following one:
+When the execution finishes, you should have 2 new files. One on your working directory `Histograms_Data.root` and another one `Efficiency_Run2018.root` located at `Efficiency_Result/eta`. The second contains the efficiency we calculated, while the first file is used to re-do any unusable fits. If you want, check out the PDF files under the `Fit_Result/` directory, which contain the fitting results as the following one:
 
 <a href="https://raw.githubusercontent.com/CMSTrackingPOG/trackingvertexing/gh-pages/data/probe_eta-0.200000__probe_eta=0.200000_Data-1.png"><img src = "https://raw.githubusercontent.com/CMSTrackingPOG/trackingvertexing/gh-pages/data/probe_eta-0.200000__probe_eta=0.200000_Data-1.png" alt="Fitting procedure applied to the Z di-muon boson invariant mass for both passing and all probes" width ="500"></a>
 
-Now we must re-run the code, but before that, change `IsMc` value to `TRUE`. This will generate an efficiency for the simulated data, so that we can compare it with part of the 2018 run. If so, now uncomment `Efficiency.C` the following line:
+Now we must re-run the code, but before that, change `IsMc` value to `TRUE`. This will generate an efficiency for the MC.
+After having both data and MC plot ready, we can make comparison between MC and 2018 run. If so, now uncomment `Efficiency.C` the following line:
 ~~~
 // compare_efficiency(quantity, "Efficiency_Result/eta/Efficiency_Run2018.root", "Efficiency_Result/eta/Efficiency_MC.root");
 ~~~
