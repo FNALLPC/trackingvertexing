@@ -39,7 +39,7 @@ We will present an introduction to using tracks for analyses in the era of **lar
 >  
 > #### All Facilitators
 > * [Isik Gokcen Karslioglu](#facilitators), Purdue University 
-> * [Richa Sharma](#facilitators), Fermilab 
+> * [Richa Sharma](#facilitators), University of Puerto Rico, Mayaguez ([richa.sharma@cern.ch](mailto:richa.sharma@cern.ch)) 
 {: .testimonial}
 
 
