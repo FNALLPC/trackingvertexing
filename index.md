@@ -35,20 +35,11 @@ We will present an introduction to using tracks for analyses in the era of **lar
 
 > ## Facilitators
 > #### Lead Contact
-> * [Emery Nibigira](#facilitators), University of Tennessee ([emery.nibigira@cern.ch](mailto:emery.nibigira@cern.ch))
-> * [Leonardo Giannini](#facilitators), UCSD ([leonardo.giannini@cern.ch](mailto:leonardo.giannini@cern.ch))
+> * [Yanxi Gu](#facilitators), University of California, San Diego ([yag002@ucsd.edi](mailto:yag002@ucsd.edu))
 >  
 > #### All Facilitators
-> <table>
->   <tr>
->     <td align="center"><a href="https://github.com/enibigir"><img src="https://lpc.fnal.gov//CMSDAS2025/Emery_Nibigira.jpg" width="100px;" alt=""/><br /><sub><b>Emery Nibigira</b></sub></a><br /><a href="https://lpc.fnal.gov/fellows/2025/Emery_Nibigira.shtml" title="More about him">🖋</a></td>
->     <td align="center"><a href="https://github.com/leonardogiannini"><img src="https://lpc.fnal.gov//CMSDAS2025/Leonardo_Giannini.jpg" width="100px;" alt=""/><br /><sub><b>Leonardo Giannini</b></sub></a><br /><a href="https://github.com/leonardogiannini" title="More about him">🖋</a></td>
->     <td align="center"><a href=""><img src="https://lpc.fnal.gov//CMSDAS2025/Tetiana_Mazurets.jpg" width="100px;" alt=""/><br /><sub><b>Tetiana Mazurets</b></sub></a><br /><a href="" title="More about Tetiana">🖋</a></td>
->     <td align="center"><a href=""><img src="https://lpc.fnal.gov//CMSDAS2025/Hichem_Bouchamaoui.jpg" width="100px;" alt=""/><br /><sub><b>Hichem Bouchamaoui</b></sub></a><br /><a href="" title="More about Hichem">🖋</a></td>
->     <td align="center"><a href=""><img src="https://lpc.fnal.gov//CMSDAS2025/Raymond_Wynne.jpg" width="100px;" alt=""/><br /><sub><b>Ray Wynne</b></sub></a><br /><a href="" title="More about Ray">🖋</a></td>
->     <td align="center"><a href="https://github.com/akgrummer"><img src="https://lpc.fnal.gov//CMSDAS2025/Aidan_Grummer.jpg" width="100px;" alt=""/><br /><sub><b>Aidan Grummer</b></sub></a><br /><a href="https://github.com/akgrummer" title="More about Aidan">🖋</a></td>
->   </tr>
-> </table>
+> * [Isik Gokcen Karslioglu](#facilitators), Purdue University 
+> * [Richa Sharma](#facilitators), Fermilab 
 {: .testimonial}
 
 
