@@ -38,7 +38,7 @@ We will present an introduction to using tracks for analyses in the era of **lar
 > * [Yanxi Gu](#facilitators), University of California, San Diego ([yag002@ucsd.edi](mailto:yag002@ucsd.edu))
 >  
 > #### All Facilitators
-> * [Isik Gokcen Karslioglu](#facilitators), Purdue University 
+> * [Isik Gokcen Karslioglu](#facilitators), Purdue University, West Lafayette (ikarslio@purdue.edu)
 > * [Richa Sharma](#facilitators), Fermilab 
 {: .testimonial}
 
