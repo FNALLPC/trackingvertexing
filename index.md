@@ -10,8 +10,8 @@ latitude: "41.842258"        # decimal latitude of workshop venue (use https://w
 longitude: "-88.245781"       # decimal longitude of the workshop venue (use https://www.latlong.net)
 humandate: "Synchronously January, 2023"    # human-readable dates for the workshop (e.g., "Feb 17-18, 2020")
 humantime: "24/7"    # human-readable times for the workshop (e.g., "9:00 am - 4:30 pm")
-startdate: 2025-01-13 # machine-readable start date for the workshop in YYYY-MM-DD format like 2015-01-01
-enddate: 2025-01-17   # machine-readable end date for the workshop in YYYY-MM-DD format like 2015-01-02
+startdate: 2026-01-12 # machine-readable start date for the workshop in YYYY-MM-DD format like 2015-01-01
+enddate: 2026-01-16   # machine-readable end date for the workshop in YYYY-MM-DD format like 2015-01-02
 email: ["emery.nibigira@cern.ch"]
 ---
 
